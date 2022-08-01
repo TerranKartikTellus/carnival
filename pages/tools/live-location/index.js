@@ -11,9 +11,14 @@ const [Lat,setLat]   = useState();
 const [Long,setLong] = useState();
 const [time,setTime] = useState();
 const [e,sete] = useState();
+
 async function getData(){
-await  axios.get("//api.open-notify.org/iss-now.json")
-      .then(e=>{
+  // await  axios.get("//api.open-notify.org/iss-now.json")
+ await axios({
+  method: 'get',
+  url: "//api.open-notify.org/iss-now.json",
+  responseType: 'stream'
+}).then(e=>{
       console.log(e);
         // console.log("lat-  ",e.data.iss_position.latitude);
         // console.log("long- ",e.data.iss_position.longitude);
@@ -31,7 +36,9 @@ await  axios.get("//api.open-notify.org/iss-now.json")
             // console.log("error: ",error);
       });}
 
-    setInterval( getData,[5000]);
+    // setInterval( 
+      getData();
+      // ,[]);
 
   return(
     <div className="h-screen flex flex-col items-center space-y-2 justify-center">
@@ -92,6 +99,7 @@ function LiveAPIdata({lat,long,time,e}){
 function Date({lat,long,time,e}){
   return(
     <div className='w-full'>
+      {/* <div className='font-sans text-xl mb-5'>Location: ISS</div> */}
       <div className='w-full flex flex-row items-start justify-start'>
         <div className='w-1/3 font-bold'>Latitude</div>
         <div className='w-2/3'>{lat}</div>
