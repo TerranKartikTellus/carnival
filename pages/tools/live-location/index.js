@@ -12,7 +12,7 @@ const [Long,setLong] = useState();
 const [time,setTime] = useState();
 const [e,sete] = useState();
 async function getData(){
-await  axios.get("http://api.open-notify.org/iss-now.json")
+await  axios.get("//api.open-notify.org/iss-now.json")
       .then(e=>{
       console.log(e);
         // console.log("lat-  ",e.data.iss_position.latitude);
@@ -28,7 +28,7 @@ await  axios.get("http://api.open-notify.org/iss-now.json")
         setTime(time);
       },
       error=>{
-            console.log("error: ",error);
+            // console.log("error: ",error);
       });}
 
     setInterval( getData,[5000]);
