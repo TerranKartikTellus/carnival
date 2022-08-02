@@ -8,6 +8,7 @@ import Link from "next/link";
 import Load from '/components/loading';
 
 import Map from "/components/map/map.js"
+import "mapbox-gl/dist/mapbox-gl.css";
 
 export default function liveLoc(){
 const [Lat,setLat]   = useState();
@@ -42,7 +43,7 @@ async function getData(){
     setInterval(getData,[5000]);
 
   return(
-    <div className="h-screen flex flex-col  items-center space-y-2 justify-center">
+    <div className="h-screen flex flex-col  items-center space-y-2 justify-center bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
        <Head>
         <title>ISS Live Location</title>
         <link rel="icon" href="/favicon.ico" />
@@ -63,7 +64,7 @@ async function getData(){
           <Link href="http://open-notify.org/Open-Notify-API/ISS-Location-Now/"><a className='font-semibold underline'>API</a></Link>
       </div>
       <div className="flex  flex-col items-start justify-start lg:flex-row lg:items-center lg:justify-center space-x-3">
-        <LiveLocation e={e} lat={Lat} long={Long} time={time}></LiveLocation>
+        { e && <LiveLocation e={e} lat={Lat} long={Long} time={time}></LiveLocation>}
         <LiveAPIdata e={e} lat={Lat} long={Long} time={time}></LiveAPIdata>
       </div>
     </div>
@@ -77,7 +78,8 @@ function LiveLocation({lat,long,time,e}){
 
   return(
     <div className="p-3 transition-all duration-300 ease-in-out bg-gray-200/30  rounded shadow-xl hover:shadow-gray-600/50">
-       <Map lat={lat} long={long} time={time}  e={e}></Map>
+       {!e && <div>...</div>}
+       {e && <Map lat={lat} long={long} time={time}  e={e}></Map>}
     </div>
   );
 }
