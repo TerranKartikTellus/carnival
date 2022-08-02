@@ -82,7 +82,13 @@ function LiveLocation({lat,long,time,e}){
   return(
     <div className="p-3 transition-all duration-300 ease-in-out bg-gray-200/30  rounded shadow-xl hover:shadow-gray-600/50">
        {!e && <div>...</div>}
-       {e && <Map lat={lat} long={long} time={time}  e={e}></Map>}
+       {e && 
+       <div className='w-full h-full flex flex-row items-center justify-center space-x-3'>
+        <Map className="scale-90" view={"street view"} lat={lat} long={long} time={time}  e={e}></Map>
+       <Map  className="scale-90" view={"globe view"} lat={lat} long={long} time={time}  e={e}></Map>
+       </div>
+       
+       }
     </div>
   );
 }
@@ -100,7 +106,7 @@ function LiveAPIdata({lat,long,time,e}){
      }
     {
       e && 
-      <div className='w-[250px] h-[500px] flex flex-col items-center justify-center'><Date  lat={lat} long={long} time={time} e={e} ></Date></div>
+      <div className='w-[220px] h-[500px] flex flex-col items-center justify-center'><Date  lat={lat} long={long} time={time} e={e} ></Date></div>
     }
     </div>
   );
