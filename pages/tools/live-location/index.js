@@ -42,7 +42,7 @@ async function getData(){
     setInterval(getData,[5000]);
 
   return(
-    <div className="h-screen flex flex-col items-center space-y-2 justify-center">
+    <div className="h-screen flex flex-col  items-center space-y-2 justify-center">
        <Head>
         <title>ISS Live Location</title>
         <link rel="icon" href="/favicon.ico" />
@@ -62,7 +62,7 @@ async function getData(){
       <br></br>
           <Link href="http://open-notify.org/Open-Notify-API/ISS-Location-Now/"><a className='font-semibold underline'>API</a></Link>
       </div>
-      <div className="flex flex-row items-center justify-center space-x-3">
+      <div className="flex  flex-col items-start justify-start lg:flex-row lg:items-center lg:justify-center space-x-3">
         <LiveLocation e={e} lat={Lat} long={Long} time={time}></LiveLocation>
         <LiveAPIdata e={e} lat={Lat} long={Long} time={time}></LiveAPIdata>
       </div>

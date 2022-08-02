@@ -12,7 +12,7 @@ const [viewport,setViewport] = useState({
   projection: 'globe',
   latitude: lat ? lat : 45.4211,
   longitude: long ? long : -75.6903,
-  zoom:16,
+  zoom:1,
   width: "600px",
   height: "500px"
 })
@@ -37,7 +37,11 @@ useEffect((e)=>{
          
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
         >
-            
+    {
+    e &&
+    <Marker longitude={long} latitude={lat} anchor="bottom" >
+      <div className='w-[10-px] h-[10px] bg-green-500 rotate-45'></div>
+    </Marker>}
         </ReactMapGL>
         <div className='text-base pt-5 flex flex-row items-start justify-start space-x-2'>
           <div>Incoming data: </div>
