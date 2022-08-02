@@ -5,6 +5,9 @@ import Head from "next/head"
 import axios from "axios"
 import { useState } from "react";
 import Link from "next/link";
+import Load from '/components/loading';
+
+import Map from "/components/map/map.js"
 
 export default function liveLoc(){
 const [Lat,setLat]   = useState();
@@ -36,23 +39,22 @@ async function getData(){
             // console.log("error: ",error);
       });}
 
-    // setInterval( 
-      getData();
-      // ,[]);
+    setInterval(getData,[5000]);
 
   return(
     <div className="h-screen flex flex-col items-center space-y-2 justify-center">
        <Head>
-        <title>Create Next App</title>
+        <title>ISS Live Location</title>
         <link rel="icon" href="/favicon.ico" />
 
 
       </Head>
       <div className="flex flex-row items-center justify-center space-x-3">
       <div>Live Location</div>
+      {/* <Load></Load> */}
       <div className="group relative  transition-all duration-1000 ease-in-out ">
         <svg className="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 24c6.627 0 12-5.373 12-12s-5.373-12-12-12-12 5.373-12 12 5.373 12 12 12zm1-6h-2v-8h2v8zm-1-12.25c.69 0 1.25.56 1.25 1.25s-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25.56-1.25 1.25-1.25z"/></svg>
-        <div className="hidden opacity-0 group-hover:opacity-80 group-hover:inline-block group-hover:absolute bg-red- translate-x-5 group-hover:translate-x-0 transition-all duration-1000 ease-in-out -top-10  left-10 w-[300px]">
+        <div className="hidden opacity-0 group-hover:opacity-80 group-hover:inline-block group-hover:absolute bg-red- translate-x-5 group-hover:translate-x-0 transition-all duration-1000 ease-in-out -top-14  left-10 w-[300px]">
           The International Space Station is moving at close to 28,000 km/h
           <br></br>
         </div>
@@ -61,19 +63,21 @@ async function getData(){
           <Link href="http://open-notify.org/Open-Notify-API/ISS-Location-Now/"><a className='font-semibold underline'>API</a></Link>
       </div>
       <div className="flex flex-row items-center justify-center space-x-3">
-        <LiveLocation></LiveLocation>
+        <LiveLocation e={e} lat={Lat} long={Long} time={time}></LiveLocation>
         <LiveAPIdata e={e} lat={Lat} long={Long} time={time}></LiveAPIdata>
       </div>
     </div>
   );
 }
-function LiveLocation(){
-    
+function LiveLocation({lat,long,time,e}){
+    const data = [
+  {sourcePosition: [-122.41669, 37.7853], targetPosition: [-122.41669, 37.781]}
+];
   
 
   return(
     <div className="p-3 transition-all duration-300 ease-in-out bg-gray-200/30  rounded shadow-xl hover:shadow-gray-600/50">
-      map
+       <Map lat={lat} long={long} time={time}  e={e}></Map>
     </div>
   );
 }
@@ -87,11 +91,11 @@ function LiveAPIdata({lat,long,time,e}){
     <div className="p-3 transition-all duration-300 ease-in-out bg-gray-200/30  rounded shadow-xl hover:shadow-gray-600/50">
      {
       !e  &&
-      <div>Load</div> 
+      <div className='w-[25px] h-[250 flex flex-row items-center justify-center'><Load></Load> </div> 
      }
     {
       e && 
-      <div className='w-[250px]'><Date  lat={lat} long={long} time={time} e={e} ></Date></div>
+      <div className='w-[250px] h[250px]'><Date  lat={lat} long={long} time={time} e={e} ></Date></div>
     }
     </div>
   );
