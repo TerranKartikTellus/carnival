@@ -22,7 +22,7 @@ async function getData(){
   url: "//api.open-notify.org/iss-now.json",
   responseType: 'stream'
 }).then(e=>{
-      console.log(e);
+      // console.log(e);
         // console.log("lat-  ",e.data.iss_position.latitude);
         // console.log("long- ",e.data.iss_position.longitude);
         // console.log("time- ",String(e.data.iss_position.timestamp));
@@ -32,7 +32,7 @@ async function getData(){
         // let date =  new Date(e.data.iss_position.timestamp * 1000)
         
         var time = moment(e.data.iss_position.timestamp).format("DD-MM-YYYY h:mm:ss");
-        console.log(time);
+        // console.log(time);
         setTime(time);
       },
       error=>{

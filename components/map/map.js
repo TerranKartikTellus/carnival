@@ -1,33 +1,44 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
+import * as React from 'react';
 
-import ReactMapGL from "react-map-gl"
+import ReactMapGL,{Marker,GeolocateControl,ScaleControl} from "react-map-gl"
 import 'mapbox-gl/dist/mapbox-gl.css';
 // pk.eyJ1IjoidGVycmFua2FydGlrdGVsbHVzIiwiYSI6ImNreWNsd3F6NTBxYzkydG9kcmdlbWV5bGYifQ._cEUQ-zPtsLt9faUD8GRWw
 
 
 export default function Map({lat,long,time,e}){
 const [viewport,setViewport] = useState({
-  style: 'mapbox://styles/mapbox/streets-v10',
+  // style: 'mapbox://styles/mapbox/streets-v10',
   projection: 'globe',
   latitude: lat ? lat : 45.4211,
   longitude: long ? long : -75.6903,
-  zoom:3,
+  zoom:16,
   width: "600px",
   height: "500px"
 })
+const [latitude,setLat] = useState();
+const [longitude,setLong] = useState();
+
+useEffect((e)=>{
+   setLat(lat);
+   setLong(long);
+},[e]);
+
+
+
+
   return(
     <div className="w-[600px] h-[500px]">
         <ReactMapGL
         {...viewport}
         style={{width: 600, height: 400}}
-        mapStyle="mapbox://styles/mapbox/satellite-v9"
-        onViewportChange={
-          viewport=>{
-            setViewport(viewport)
-          }
-        }
+        mapStyle="mapbox://styles/tarrankartiktellus/cl6bufqtr000a14o20a2plics"
+         onViewportChange={viewport => setViewport({viewport})}
+         
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
-        ></ReactMapGL>
+        >
+            
+        </ReactMapGL>
         <div className='text-base pt-5 flex flex-row items-start justify-start space-x-2'>
           <div>Incoming data: </div>
           {
