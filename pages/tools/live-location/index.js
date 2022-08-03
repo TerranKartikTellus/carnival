@@ -43,7 +43,7 @@ async function getData(){
     setInterval(getData,[5000]);
 
   return(
-    <div className="h-screen flex flex-col  items-center space-y-2 justify-center bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+    <div className="h-screen flex flex-col  items-center space-y-2 justify-center bg-gradient-to-r from-indigo-500/70 via-purple-500/70 to-pink-500/70">
        <Head>
         <title>International Space Station Live Location</title>
         <link rel="icon" href="/favicon.ico" />

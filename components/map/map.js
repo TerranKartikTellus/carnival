@@ -11,7 +11,7 @@ export default function Map({view,lat,long,time,e}){
 // let z =3;
 let z= 10.2;
 const [zoom,setZoom] = useState(
-  view=="street view" ? 12 : 3.2
+  view=="street view" ? 12 : 2.0
 );
 
   const [viewport,setViewport] = useState({
