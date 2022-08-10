@@ -1,10 +1,8 @@
 
 # International Space Station Live Location
 
-<iframe width="360" height="202" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameBorder="0" src="https://imgflip.com/embed/6p92k3"></iframe>
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
 
-
-<a href="https://imgflip.com/gif/6p92k3"><img src="https://i.imgflip.com/gif/6p92k3.gif"></img></a>
 ### Steps to Clone locally
 1. download the repo
 2. install npm packages [npm i]
